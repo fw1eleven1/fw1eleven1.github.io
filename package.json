@@ -5,13 +5,17 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "gatsby": "^4.10.3",
+    "gatsby-plugin-emotion": "^7.10.0",
     "gatsby-plugin-gatsby-cloud": "^4.10.1",
     "gatsby-plugin-image": "^2.10.1",
     "gatsby-plugin-manifest": "^4.10.2",
     "gatsby-plugin-offline": "^5.10.2",
     "gatsby-plugin-react-helmet": "^5.10.0",
     "gatsby-plugin-sharp": "^4.10.2",
+    "gatsby-plugin-typescript": "^4.10.1",
     "gatsby-source-filesystem": "^4.10.1",
     "gatsby-transformer-sharp": "^4.10.0",
     "prop-types": "^15.8.1",
@@ -20,7 +24,13 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "^2.6.1"
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.1",
+    "typescript": "^4.6.3"
   },
   "keywords": [
     "gatsby"
