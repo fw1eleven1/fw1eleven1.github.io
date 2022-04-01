@@ -1,4 +1,5 @@
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
   const output = getConfig().output || {};
@@ -15,3 +16,65 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
     },
   });
 };
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const pathRegexp = /(.*)(\/contents\/)(.*)/
+    if (pathRegexp.test(node.fileAbsolutePath)) {
+      const slug = createFilePath({ node, getNode });
+      createNodeField({ node, name: 'slug', value: slug });
+    }
+
+  }
+};
+
+exports.createPages = async ({ actions, graphql, reporter}) => {
+  const {createPage} = actions
+
+  const queryCategories = await graphql(
+    `
+      {
+        allDirectory(filter: {relativeDirectory: {eq: ""}}) {
+          nodes {
+            relativePath
+          }
+        }
+      }
+    `
+  )
+
+  const PostListTemplateComponent = path.resolve(
+    __dirname,
+    'src/templates/postList_template.tsx'
+  )
+
+  const generatePostListPage = ({
+      relativePath
+  }) => {
+    console.log(relativePath)
+    const pageOptions = {
+      path: `/${relativePath}`,
+      component: PostListTemplateComponent,
+      context: {
+        categoryRegex: `/(\/contents\/${relativePath})/`
+      }
+    }
+
+    createPage(pageOptions)
+  }
+
+  queryCategories.data.allDirectory.nodes.forEach(generatePostListPage)
+
+  // queryCategories.data.allDirectory.nodes.forEach((category) => {
+  //   console.log(`/(/contents/${category.relativePath})/`);
+  //   createPage({
+  //     path: `/${category.relativePath}`,
+  //     component: PostListTemplateComponent,
+  //     context: {
+  //       categoryRegex: `/(\/contents\/${category.relativePath})/`
+  //     }
+  //   })
+  // })
+}

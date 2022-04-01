@@ -13,7 +13,7 @@ const PostItemWrapper = styled.div`
 `
 
 const PostItemTitle = styled.div`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
 `
 
@@ -31,7 +31,7 @@ const PostItemSummary = styled.div`
   overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.8;
 `
 
@@ -55,13 +55,14 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   tags,
   summary,
 }) {
+  console.log(tags)
   return (
     <PostItemWrapper>
       <PostItemTitle>{title}</PostItemTitle>
       <PostItemSummary>{summary}</PostItemSummary>
       <PostItemTags>
         {tags.map(tag => (
-          <PostItemTag>#{tag}</PostItemTag>
+          <PostItemTag key={tag}>#{tag}</PostItemTag>
         ))}
       </PostItemTags>
       <PostItemDate>{date}</PostItemDate>
