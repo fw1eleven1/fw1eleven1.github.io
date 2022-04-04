@@ -1,15 +1,19 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 type PostItemProps = {
   title: string
   date: string
   tags: string[]
   summary: string
+  link: string
 }
 
-const PostItemWrapper = styled.div`
+const PostItemWrapper = styled(Link)`
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
 `
 
 const PostItemTitle = styled.div`
@@ -54,10 +58,10 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   date,
   tags,
   summary,
+  link,
 }) {
-  console.log(tags)
   return (
-    <PostItemWrapper>
+    <PostItemWrapper to={link}>
       <PostItemTitle>{title}</PostItemTitle>
       <PostItemSummary>{summary}</PostItemSummary>
       <PostItemTags>

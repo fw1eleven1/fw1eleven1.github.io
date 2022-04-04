@@ -53,12 +53,11 @@ exports.createPages = async ({ actions, graphql, reporter}) => {
   const generatePostListPage = ({
       relativePath
   }) => {
-    console.log(relativePath)
     const pageOptions = {
       path: `/${relativePath}`,
       component: PostListTemplateComponent,
       context: {
-        categoryRegex: `/(\/contents\/${relativePath})/`
+        categoryRegex: `/(\/contents\/${relativePath})/`,
       }
     }
 

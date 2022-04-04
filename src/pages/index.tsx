@@ -106,6 +106,9 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
         edges {
           node {
             id
+            fields {
+              slug
+            }
             frontmatter {
               title
               date
@@ -180,13 +183,13 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       ),
     [],
   )
+
   return (
     <Main>
-      <Sidebar categories={categories} />
       <div>
-        <Description />
+        {/* <Description description="전체 글 보기" /> */}
         <TagList selectedTag={selectedTag} tags={tagList} />
-        <PostList posts={remarkEdges} />
+        <PostList selectedTag={selectedTag} posts={remarkEdges} />
       </div>
     </Main>
   )

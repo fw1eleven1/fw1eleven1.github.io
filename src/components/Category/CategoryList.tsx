@@ -9,17 +9,18 @@ type CategoriesProps = {
 }
 
 const CategoryWrapper = styled(Link)`
+  display: flex;
+  font-size: 18px;
   cursor: pointer;
 `
 
 const CategoryList: FunctionComponent<CategoriesProps> = function ({
   categories,
 }) {
-  console.log(categories)
   return (
     <div>
       {Object.entries(categories).map(([name, count]) => (
-        <CategoryWrapper to={name} key={name}>
+        <CategoryWrapper to={name === 'All' ? `/` : `/${name}`} key={name}>
           - {name} ({count})
         </CategoryWrapper>
       ))}

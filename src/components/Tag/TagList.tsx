@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 
 type TagsProps = {
   selectedTag: string
@@ -18,9 +19,14 @@ const TagListWrapper = styled.div`
   width: 800px;
   margin: 0 auto 15px;
   overflow-x: auto;
+
+  & > a {
+    color: inherit;
+    text-decoration: none;
+  }
 `
 
-const TagItem = styled.div<TagStyleProps>`
+const TagItem = styled(Link)<TagStyleProps>`
   margin-right: 10px;
   padding: 3px 0;
   font-size: 16px;
@@ -33,11 +39,14 @@ const TagItem = styled.div<TagStyleProps>`
 `
 
 const TagList: FunctionComponent<TagsProps> = function ({ selectedTag, tags }) {
-  console.log(selectedTag)
   return (
     <TagListWrapper>
       {Object.entries(tags).map(([name, count]) => (
-        <TagItem key={name} {...(selectedTag === name && { active: 'active' })}>
+        <TagItem
+          key={name}
+          to={`?tag=${name}`}
+          {...(selectedTag === name && { active: 'active' })}
+        >
           #{name}({count})
         </TagItem>
       ))}
