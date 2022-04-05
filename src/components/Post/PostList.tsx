@@ -25,8 +25,7 @@ const PostListWrapper = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   row-gap: 30px;
-  max-width: 800px;
-  width: 800px;
+  padding: 15px 0 50px;
 `
 
 const PostList: FunctionComponent<PostProps> = function ({

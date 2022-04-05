@@ -1,20 +1,11 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
-import PostItem from 'components/Post/PostItem'
 import Main from 'components/Common/Main'
 import Description from 'components/Common/Description'
 import queryString, { ParsedQuery } from 'query-string'
 import TagList from 'components/Tag/TagList'
-
-const PostListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  row-gap: 30px;
-  max-width: 800px;
-  width: 800px;
-`
+import PostList from 'components/Post/PostList'
 
 type PostTemplateProps = {
   location: {
@@ -23,19 +14,7 @@ type PostTemplateProps = {
   }
   data: {
     allMarkdownRemark: {
-      edges: {
-        node: {
-          frontmatter: {
-            title: string
-            date: string
-            tags: string[]
-            summary: string
-          }
-          fields: {
-            slug: string
-          }
-        }
-      }
+      edges: PostListItemProps[]
     }
     file: {
       childMarkdownRemark: {
@@ -51,7 +30,7 @@ type PostTemplateProps = {
 
 type PostListItemProps = {
   node: {
-    id: string
+    fields: { slug: string }
     frontmatter: {
       title: string
       date: string
@@ -65,6 +44,10 @@ type CategoryListProps = {
   [key: string]: number
 }
 
+const ChildWrapper = styled.div`
+  width: 800px;
+`
+
 const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
   location: { pathname, search },
   data: {
@@ -76,7 +59,7 @@ const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
     },
   },
 }) {
-  const desc = description[pathname.substr(1)]
+  const desc = description[pathname.substring(1)]
 
   const parsed: ParsedQuery<string> = queryString.parse(search)
   const selectedTag: string =
@@ -109,22 +92,11 @@ const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
 
   return (
     <Main>
-      <div>
+      <ChildWrapper>
         <Description description={desc} />
         <TagList selectedTag={selectedTag} tags={tagList} />
-        <PostListWrapper>
-          {edges.map((edge, i) => (
-            <PostItem
-              key={i}
-              title={edge.node.frontmatter.title}
-              date={edge.node.frontmatter.date}
-              tags={edge.node.frontmatter.tags}
-              summary={edge.node.frontmatter.summary}
-              link={edge.node.fields.slug}
-            />
-          ))}
-        </PostListWrapper>
-      </div>
+        <PostList selectedTag={selectedTag} posts={edges} />
+      </ChildWrapper>
     </Main>
   )
 }
@@ -136,7 +108,6 @@ export const queryData = graphql`
     allMarkdownRemark(filter: { fileAbsolutePath: { regex: $categoryRegex } }) {
       edges {
         node {
-          id
           frontmatter {
             title
             summary

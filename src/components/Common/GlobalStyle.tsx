@@ -45,6 +45,10 @@ const defaultStyle = css`
   p {
     overflow-wrap: break-word;
   }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   #__next,
   #root {
     isolation: isolate;

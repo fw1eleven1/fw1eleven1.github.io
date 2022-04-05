@@ -4,9 +4,8 @@ import queryString, { ParsedQuery } from 'query-string'
 
 import Main from 'components/Common/Main'
 import PostList from 'components/Post/PostList'
-import Sidebar from 'components/Common/Sidebar'
-import Description from 'components/Common/Description'
 import TagList from 'components/Tag/TagList'
+import styled from '@emotion/styled'
 
 type IndexPageProps = {
   location: {
@@ -16,13 +15,6 @@ type IndexPageProps = {
     allMarkdownRemark: {
       edges: PostListItemProps[]
     }
-    // allDirectory: {
-    //   edges: {
-    //     node: {
-    //       name: string
-    //     }
-    //   }
-    // }
     allDirectory: {
       group: {
         edges: {
@@ -35,22 +27,14 @@ type IndexPageProps = {
   }
 }
 
-type DirectoryProps = {
-  group: {
-    edges: CategoryGroupProps
-  }
-}
-
-type CategoryGroupProps = {
-  edges: CategoryNodeProps
-}
-
 type CategoryEdgesProps = {
-  node: CategoryNodeProps
+  edges: CategoryNodeProps[]
 }
 
 type CategoryNodeProps = {
-  relativeDirectory: string
+  node: {
+    relativeDirectory: string
+  }
 }
 
 type CategoriesProps = {
@@ -59,7 +43,7 @@ type CategoriesProps = {
 
 type PostListItemProps = {
   node: {
-    id: string
+    fields: { slug: string }
     frontmatter: {
       title: string
       date: string
@@ -73,27 +57,18 @@ type QueryDataProps = {
   allMarkdownRemark: {
     edges: PostListItemProps[]
   }
-  // allDirectory: {
-  //   edges: {
-  //     node: {
-  //       name: string
-  //     }
-  //   }
-  // }
   allDirectory: {
-    group: {
-      edges: {
-        node: {
-          relativeDirectory: string
-        }
-      }
-    }
+    group: CategoryEdgesProps[]
   }
 }
 
 type CategoryListProps = {
   [key: string]: number
 }
+
+const ChildWrapper = styled.div`
+  width: 800px;
+`
 
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
@@ -118,13 +93,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
           }
         }
       }
-      # allDirectory(filter: { relativeDirectory: { eq: "" } }) {
-      #   edges {
-      #     node {
-      #       name
-      #     }
-      #   }
-      # }
       allDirectory(
         filter: { relativePath: { ne: "" }, relativeDirectory: { ne: "" } }
       ) {
@@ -146,8 +114,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   let categories: CategoriesProps = {
     All: 0,
   }
-  directoryGroups.forEach((group: CategoryGroupProps) => {
-    group.edges.forEach((edge: CategoryEdgesProps) => {
+  directoryGroups.forEach((group: CategoryEdgesProps) => {
+    group.edges.forEach((edge: CategoryNodeProps) => {
       if (categories[edge.node.relativeDirectory] === undefined)
         categories[edge.node.relativeDirectory] = 1
       else categories[edge.node.relativeDirectory]++
@@ -186,11 +154,11 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
 
   return (
     <Main>
-      <div>
+      <ChildWrapper>
         {/* <Description description="전체 글 보기" /> */}
         <TagList selectedTag={selectedTag} tags={tagList} />
         <PostList selectedTag={selectedTag} posts={remarkEdges} />
-      </div>
+      </ChildWrapper>
     </Main>
   )
 }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Footer from './Footer'
 import GlobalStyle from './GlobalStyle'
@@ -6,16 +6,14 @@ import Header from './Header'
 import { graphql, useStaticQuery } from 'gatsby'
 import Sidebar from './Sidebar'
 
-type CategoryGroupProps = {
-  edges: CategoryNodeProps
-}
-
 type CategoryEdgesProps = {
-  node: CategoryNodeProps
+  edges: CategoryNodeProps[]
 }
 
 type CategoryNodeProps = {
-  relativeDirectory: string
+  node: {
+    relativeDirectory: string
+  }
 }
 
 type CategoriesProps = {
@@ -32,6 +30,12 @@ const MainWrapper = styled.div`
 `
 
 const Main: FunctionComponent = function ({ children }) {
+  const [pathname, setPathname] = useState<string>('')
+  useEffect(() => {
+    let path: string = window.location.pathname
+    setPathname(path.substring(1) === '' ? 'All' : path.substring(1))
+  }, [window.location.pathname])
+
   const data = useStaticQuery(graphql`
     query {
       allDirectory(
@@ -40,7 +44,6 @@ const Main: FunctionComponent = function ({ children }) {
         group(field: relativeDirectory) {
           edges {
             node {
-              name
               relativeDirectory
             }
           }
@@ -54,8 +57,8 @@ const Main: FunctionComponent = function ({ children }) {
   let categories: CategoriesProps = {
     All: 0,
   }
-  directoryGroups.forEach((group: CategoryGroupProps) => {
-    group.edges.forEach((edge: CategoryEdgesProps) => {
+  directoryGroups.forEach((group: CategoryEdgesProps) => {
+    group.edges.forEach((edge: CategoryNodeProps) => {
       if (categories[edge.node.relativeDirectory] === undefined)
         categories[edge.node.relativeDirectory] = 1
       else categories[edge.node.relativeDirectory]++
@@ -68,7 +71,7 @@ const Main: FunctionComponent = function ({ children }) {
       <GlobalStyle />
       <Header />
       <MainWrapper>
-        <Sidebar categories={categories} />
+        <Sidebar selectedCategory={pathname} categories={categories} />
         {children}
       </MainWrapper>
       <Footer />

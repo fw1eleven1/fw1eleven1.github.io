@@ -1,4 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, {
+  FunctionComponent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+} from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
@@ -17,8 +22,14 @@ const TagListWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
   width: 800px;
-  margin: 0 auto 15px;
+  margin: 0 auto;
   overflow-x: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   & > a {
     color: inherit;
@@ -39,8 +50,31 @@ const TagItem = styled(Link)<TagStyleProps>`
 `
 
 const TagList: FunctionComponent<TagsProps> = function ({ selectedTag, tags }) {
+  const horizonScrollRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
+  useEffect(() => {
+    const el = horizonScrollRef.current
+    if (el) {
+      const onWheel = (e: WheelEvent) => {
+        // if (el.scrollLeft === 0) {
+        //   console.log('top')
+        // }
+        // if (el.clientWidth + el.scrollLeft === el.scrollWidth) {
+        //   console.log('bottom')
+        // }
+        if (e.deltaY == 0) return
+        e.preventDefault()
+        el.scrollTo({
+          left: el.scrollLeft + e.deltaY,
+        })
+      }
+      el.addEventListener('wheel', onWheel)
+      return () => el.removeEventListener('wheel', onWheel)
+    }
+    return
+  }, [])
+
   return (
-    <TagListWrapper>
+    <TagListWrapper ref={horizonScrollRef}>
       {Object.entries(tags).map(([name, count]) => (
         <TagItem
           key={name}
