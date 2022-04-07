@@ -15,7 +15,7 @@ type CategoryStyleProps = {
 
 const CategoryWrapper = styled(Link)<CategoryStyleProps>`
   display: flex;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   color: #6c757d;
   font-weight: ${props => (props.active ? '600' : 'normal')};

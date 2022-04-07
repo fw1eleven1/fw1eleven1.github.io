@@ -10,7 +10,7 @@ const PostContentWrapper = styled.div`
 
   // Markdown Style
   line-height: 1.8;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
 
   // Apply Padding Attribute to All Elements
@@ -39,15 +39,15 @@ const PostContentWrapper = styled.div`
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 32px;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 27px;
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   // Adjust Quotation Element Style

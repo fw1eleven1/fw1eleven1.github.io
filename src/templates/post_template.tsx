@@ -26,6 +26,7 @@ type PostListItemProps = {
   node: {
     fields: { slug: string }
     html: string
+    id: string
     frontmatter: {
       title: string
       date: string
@@ -56,6 +57,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
   const {
     node: {
       html,
+      id,
       frontmatter: { title, summary, date, tags },
     },
   } = edges[0]
@@ -72,7 +74,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
       <ChildWrapper>
         <PostHead title={title} date={date} tags={tags} />
         <PostContent html={html} />
-        <CommentWidget title={title} />
+        <CommentWidget id={id} title={title} />
       </ChildWrapper>
     </Main>
   )
@@ -91,6 +93,7 @@ export const queryMarkdownDataBySlug = graphql`
       edges {
         node {
           html
+          id
           frontmatter {
             title
             summary
