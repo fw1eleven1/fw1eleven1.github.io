@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-post-template-tsx",
     "path": "/JustChat/블로그, 시작합니다/",
-    "result": {"data":{"site":{"siteMetadata":{"title":"js의 잡다한 블로그"}},"allMarkdownRemark":{"edges":[{"node":{"html":"<h2>대망의 블로그 첫 글</h2>\n<p>개발자라면 누구나 한다는 블로그를 일찌감치 시작하려 했지만,</p>\n<p>티스토리까지 만들어는 놨지만,</p>\n<p>귀찮아서 글 2개 쓰고 머리속에 치워버렸다가</p>\n<p>Gatsby 공부하면서 블로그 만들어 볼 겸,</p>\n<p>겸사겸사 다시 블로그를 시작해보고자 합니다.\n<br></p>\n<p>이것도 얼마나 갈 지 모르겠지만 그래도 생각날 때마다 글을 써보겠습니다. 뭐든지.</p>","frontmatter":{"title":"블로그, 시작합니다","summary":"블로그의 첫 글","date":"2022-04-07","tags":["잡담"]}}}]}},"pageContext":{"slug":"/JustChat/블로그, 시작합니다/"}},
+    "result": {"data":{"site":{"siteMetadata":{"title":"js의 잡다한 블로그"}},"allMarkdownRemark":{"edges":[{"node":{"html":"<h2>대망의 블로그 첫 글</h2>\n<p>개발자라면 누구나 한다는 블로그를 일찌감치 시작하려 했지만,</p>\n<p>티스토리까지 만들어는 놨지만,</p>\n<p>귀찮아서 글 2개 쓰고 머리속에 치워버렸다가</p>\n<p>Gatsby 공부하면서 블로그 만들어 볼 겸,</p>\n<p>겸사겸사 다시 블로그를 시작해보고자 합니다.\n<br></p>\n<p>이것도 얼마나 갈 지 모르겠지만 그래도 생각날 때마다 글을 써보겠습니다. 뭐든지.</p>","frontmatter":{"title":"블로그, 시작합니다","summary":"블로그의 첫 글","date":"2022-04-06","tags":["잡담"]}}}]}},"pageContext":{"slug":"/JustChat/블로그, 시작합니다/"}},
     "staticQueryHashes": ["3495371188"]}
