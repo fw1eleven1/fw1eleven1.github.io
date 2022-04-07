@@ -144,8 +144,7 @@ export const queryData = graphql`
       childMarkdownRemark {
         frontmatter {
           description {
-            IT
-            LIFE
+            잡담
           }
         }
       }
