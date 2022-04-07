@@ -52,8 +52,7 @@ type CategoryListProps = {
 }
 
 const ChildWrapper = styled.div`
-  max-width: 800px;
-  width: 100%;
+  width: 800px;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -74,7 +73,7 @@ const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
 }) {
   const desc = description[pathname.substring(1)]
 
-  const parsed: ParsedQuery<string> = queryString.parse(search)
+  const parsed: ParsedQuery<string> = queryString.parse(decodeURI(search))
   const selectedTag: string =
     typeof parsed.tag !== 'string' || !parsed.tag ? 'All' : parsed.tag
 
@@ -144,7 +143,8 @@ export const queryData = graphql`
       childMarkdownRemark {
         frontmatter {
           description {
-            잡담
+            IT
+            JustChat
           }
         }
       }
