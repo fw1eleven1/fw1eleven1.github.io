@@ -1,4 +1,4 @@
-# [js의 잡다한 블로그](blog.jsworld.me)
+# [js의 잡다한 블로그](https://blog.jsworld.me)
 
 <br>
 
@@ -9,7 +9,6 @@
 
 
 사용 기술 스택
-
 - Gatsby
 - GraphQL
 
