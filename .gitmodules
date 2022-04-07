@@ -1,0 +1,3 @@
+[submodule "contents"]
+	path = contents
+	url = https://github.com/fw1eleven1/blog-contents.git
