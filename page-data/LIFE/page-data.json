@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-post-list-template-tsx",
+    "path": "/LIFE",
+    "result": {"data":{"site":{"siteMetadata":{"title":"js의 잡다한 블로그","description":"아무 글이나 싸지르고 보는 js의 잡다한 블로그","siteUrl":"http://jsworld.me"}},"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"Life is egg","summary":"벚꼬추 구경가기 좋은 부산명소","date":"2022-04-01","tags":["Travel","Busan","Spring"]},"fields":{"slug":"/LIFE/LIFE-1/"}}}]},"file":{"childMarkdownRemark":{"frontmatter":{"description":{"IT":"IT글 모음","LIFE":"인생..."}}}}},"pageContext":{"categoryRegex":"/(/contents/LIFE)/"}},
+    "staticQueryHashes": ["3495371188"]}
