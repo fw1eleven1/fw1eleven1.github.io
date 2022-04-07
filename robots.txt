@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: http://jsworld.me/sitemap/sitemap-index.xml
-Host: jsworld.me
+Sitemap: https://blog.jsworld.me/sitemap/sitemap-index.xml
+Host: https://blog.jsworld.me
