@@ -101,6 +101,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
         }
       }
       allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
         filter: { fileAbsolutePath: { regex: "/(contents)/" } }
       ) {
         edges {

@@ -124,7 +124,10 @@ export const queryData = graphql`
         siteUrl
       }
     }
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: $categoryRegex } }) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { fileAbsolutePath: { regex: $categoryRegex } }
+    ) {
       edges {
         node {
           frontmatter {
