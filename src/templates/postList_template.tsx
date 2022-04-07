@@ -13,6 +13,13 @@ type PostTemplateProps = {
     search: string
   }
   data: {
+    site: {
+      siteMetadata: {
+        title: string
+        description: string
+        siteUrl: string
+      }
+    }
     allMarkdownRemark: {
       edges: PostListItemProps[]
     }
@@ -45,12 +52,18 @@ type CategoryListProps = {
 }
 
 const ChildWrapper = styled.div`
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
   location: { pathname, search },
   data: {
+    site: { siteMetadata },
     allMarkdownRemark: { edges },
     file: {
       childMarkdownRemark: {
@@ -91,7 +104,7 @@ const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
   )
 
   return (
-    <Main>
+    <Main siteMetadata={siteMetadata}>
       <ChildWrapper>
         <Description description={desc} />
         <TagList selectedTag={selectedTag} tags={tagList} />
@@ -105,6 +118,13 @@ export default PostListTemplate
 
 export const queryData = graphql`
   query queryData($categoryRegex: String) {
+    site {
+      siteMetadata {
+        title
+        description
+        siteUrl
+      }
+    }
     allMarkdownRemark(filter: { fileAbsolutePath: { regex: $categoryRegex } }) {
       edges {
         node {

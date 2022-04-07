@@ -10,7 +10,12 @@ type CategoriesProps = {
 }
 
 const SidebarWrapper = styled.div`
-  width: 204px;
+  max-width: 180px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const Sidebar: FunctionComponent<CategoriesProps> = function ({

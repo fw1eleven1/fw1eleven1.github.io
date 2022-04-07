@@ -21,8 +21,7 @@ type TagStyleProps = {
 const TagListWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  width: 800px;
-  margin: 0 auto;
+  width: 600px;
   overflow-x: auto;
 
   -ms-overflow-style: none;
@@ -34,6 +33,11 @@ const TagListWrapper = styled.div`
   & > a {
     color: inherit;
     text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    width: 80vw;
+    max-width: 100%;
   }
 `
 

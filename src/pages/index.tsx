@@ -12,6 +12,13 @@ type IndexPageProps = {
     search: string
   }
   data: {
+    site: {
+      siteMetadata: {
+        title: string
+        description: string
+        siteUrl: string
+      }
+    }
     allMarkdownRemark: {
       edges: PostListItemProps[]
     }
@@ -54,6 +61,13 @@ type PostListItemProps = {
 }
 
 type QueryDataProps = {
+  site: {
+    siteMetadata: {
+      title: string
+      description: string
+      siteUrl: string
+    }
+  }
   allMarkdownRemark: {
     edges: PostListItemProps[]
   }
@@ -67,7 +81,12 @@ type CategoryListProps = {
 }
 
 const ChildWrapper = styled.div`
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
@@ -75,6 +94,13 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
 }) {
   const data: QueryDataProps = useStaticQuery(graphql`
     query {
+      site {
+        siteMetadata {
+          title
+          description
+          siteUrl
+        }
+      }
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/(contents)/" } }
       ) {
@@ -153,7 +179,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <Main>
+    <Main siteMetadata={data.site.siteMetadata}>
       <ChildWrapper>
         {/* <Description description="전체 글 보기" /> */}
         <TagList selectedTag={selectedTag} tags={tagList} />

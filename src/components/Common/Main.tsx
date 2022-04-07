@@ -1,10 +1,21 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, ReactNode, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import Footer from './Footer'
 import GlobalStyle from './GlobalStyle'
 import Header from './Header'
 import { graphql, useStaticQuery } from 'gatsby'
 import Sidebar from './Sidebar'
+import { Helmet } from 'react-helmet'
+
+type MainProps = {
+  siteMetadata: {
+    title: string
+    description: string
+    siteUrl: string
+  }
+  title?: string
+  children: ReactNode
+}
 
 type CategoryEdgesProps = {
   edges: CategoryNodeProps[]
@@ -24,16 +35,33 @@ const MainWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 1024px;
-  padding: 50px 0 100px;
+  padding: 50px 12px 100px;
   margin: 0 auto;
   gap: 20px;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 30px 35px 100px;
+  }
 `
 
-const Main: FunctionComponent = function ({ children }) {
+const Main: FunctionComponent<MainProps> = function ({
+  siteMetadata,
+  title,
+  children,
+}) {
   const [pathname, setPathname] = useState<string>('')
   useEffect(() => {
     let path: string = window.location.pathname
-    setPathname(path.substring(1) === '' ? 'All' : path.substring(1))
+    path = path.substring(1)
+    if (path === '') {
+      path = 'All'
+    } else {
+      if (path.indexOf('/') !== -1) {
+        path = path.substring(0, path.indexOf('/'))
+      }
+    }
+    setPathname(path)
   }, [window.location.pathname])
 
   const data = useStaticQuery(graphql`
@@ -68,8 +96,20 @@ const Main: FunctionComponent = function ({ children }) {
 
   return (
     <div>
+      <Helmet>
+        (
+        <title>
+          {title !== undefined
+            ? `${title} | ${siteMetadata.title}`
+            : siteMetadata.title}
+        </title>
+        <meta name="description" content={siteMetadata.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+        <html lang="ko" />
+      </Helmet>
       <GlobalStyle />
-      <Header />
+      <Header selectedCategory={pathname} categories={categories} />
       <MainWrapper>
         <Sidebar selectedCategory={pathname} categories={categories} />
         {children}
