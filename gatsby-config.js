@@ -3,7 +3,7 @@ module.exports = {
     title: `js의 잡다한 블로그`,
     description: `아무 글이나 싸지르고 보는 js의 잡다한 블로그`,
     author: `js`,
-    siteUrl: `http://jsworld.me/`,
+    siteUrl: `https://blog.jsworld.me/`,
   },
   plugins: [
     {
@@ -73,7 +73,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'http://jsworld.me/',
+        siteUrl: 'https://blog.jsworld.me/',
         stripQueryString: true,
       },
     },
