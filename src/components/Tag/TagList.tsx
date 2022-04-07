@@ -51,6 +51,10 @@ const TagItem = styled(Link)<TagStyleProps>`
   &:last-of-type {
     margin-right: 0;
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 const TagList: FunctionComponent<TagsProps> = function ({ selectedTag, tags }) {

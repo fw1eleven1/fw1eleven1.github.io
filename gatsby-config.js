@@ -84,7 +84,13 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
-    'gatsby-plugin-cname'
+    'gatsby-plugin-cname',
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+          shortname: `blog-jsworld-me`
+      }
+  },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -19,6 +19,10 @@ const CategoryWrapper = styled(Link)<CategoryStyleProps>`
   cursor: pointer;
   color: #6c757d;
   font-weight: ${props => (props.active ? '600' : 'normal')};
+
+  &:hover {
+    opacity: 0.8;
+  }
 `
 
 const CategoryList: FunctionComponent<CategoriesProps> = function ({

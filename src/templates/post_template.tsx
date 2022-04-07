@@ -4,6 +4,7 @@ import Main from 'components/Common/Main'
 import styled from '@emotion/styled'
 import PostHead from 'components/Post/PostHead'
 import PostContent from 'components/Post/PostContent'
+import CommentWidget from 'components/Post/CommentWidget'
 
 type PostTemplateProps = {
   data: {
@@ -71,6 +72,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
       <ChildWrapper>
         <PostHead title={title} date={date} tags={tags} />
         <PostContent html={html} />
+        <CommentWidget title={title} />
       </ChildWrapper>
     </Main>
   )

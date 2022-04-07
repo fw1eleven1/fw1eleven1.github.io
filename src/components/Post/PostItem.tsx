@@ -9,16 +9,20 @@ type PostItemProps = {
   summary: string
   link: string
 }
+const PostItemTitle = styled.div`
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+`
 
 const PostItemWrapper = styled(Link)`
   cursor: pointer;
   color: inherit;
   text-decoration: none;
-`
 
-const PostItemTitle = styled.div`
-  font-size: 24px;
-  font-weight: 600;
+  &:hover ${PostItemTitle} {
+    opacity: 0.7;
+  }
 `
 
 const PostItemDate = styled.div`
