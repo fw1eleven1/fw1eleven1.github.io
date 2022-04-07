@@ -62,7 +62,7 @@ const Main: FunctionComponent<MainProps> = function ({
       }
     }
     setPathname(path)
-  }, [window.location.pathname])
+  }, [])
 
   const data = useStaticQuery(graphql`
     query {
