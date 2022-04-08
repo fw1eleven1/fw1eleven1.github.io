@@ -106,6 +106,10 @@ const Main: FunctionComponent<MainProps> = function ({
         <meta name="description" content={siteMetadata.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta
+          name="google-site-verification"
+          content="yKisXKWH5kp3DrPpiw-iNbBQd50LA5O5vYv2GSf8DPM"
+        />
         <html lang="ko" />
       </Helmet>
       <GlobalStyle />
