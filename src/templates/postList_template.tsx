@@ -26,9 +26,7 @@ type PostTemplateProps = {
     file: {
       childMarkdownRemark: {
         frontmatter: {
-          description: {
-            [key: string]: string
-          }
+          description: string[]
         }
       }
     }
@@ -71,7 +69,16 @@ const PostListTemplate: FunctionComponent<PostTemplateProps> = function ({
     },
   },
 }) {
-  const desc = description[pathname.substring(1)]
+  let path = decodeURI(pathname).substring(1)
+  if (path.indexOf('/') !== -1) {
+    path = path.substring(0, path.indexOf('/'))
+  }
+
+  const selectedDescription = description.filter(
+    desc => desc.split(':')[0] === path,
+  )
+
+  const desc = selectedDescription[0].split(':')[1]
 
   const parsed: ParsedQuery<string> = queryString.parse(decodeURI(search))
   const selectedTag: string =
@@ -145,10 +152,7 @@ export const queryData = graphql`
     file(name: { eq: "category_info" }) {
       childMarkdownRemark {
         frontmatter {
-          description {
-            IT
-            JustChat
-          }
+          description
         }
       }
     }

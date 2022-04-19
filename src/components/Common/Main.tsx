@@ -53,7 +53,7 @@ const Main: FunctionComponent<MainProps> = function ({
   const [pathname, setPathname] = useState<string>('')
   useEffect(() => {
     let path: string = window.location.pathname
-    path = path.substring(1)
+    path = decodeURI(path).substring(1)
     if (path === '') {
       path = 'All'
     } else {
