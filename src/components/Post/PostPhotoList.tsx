@@ -1,34 +1,43 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import PostItem from './PostItem'
+import PostPhotoItem from './PostPhotoItem'
 import useInfiniteScroll from 'hooks/useInfiniteScroll'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 type PostProps = {
   selectedTag: string
-  posts: PostItemProps[]
+  posts: PostPhotoItemProps[]
 }
 
-type PostItemProps = {
+type PostPhotoItemProps = {
   node: {
     fields: { slug: string }
     frontmatter: {
       title: string
       date: string
       tags: string[]
-      summary?: string
+      thumbnail?: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData
+        }
+      }
     }
   }
 }
 
 const PostListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  row-gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
   padding: 15px 0 50px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
 `
 
-const PostList: FunctionComponent<PostProps> = function ({
+const PostPhotoList: FunctionComponent<PostProps> = function ({
   selectedTag,
   posts,
 }) {
@@ -43,14 +52,14 @@ const PostList: FunctionComponent<PostProps> = function ({
               fields: { slug },
               frontmatter,
             },
-          }: PostItemProps,
+          }: PostPhotoItemProps,
           i: number,
         ) => (
-          <PostItem key={i} {...frontmatter} link={slug} />
+          <PostPhotoItem key={i} {...frontmatter} link={slug} />
         ),
       )}
     </PostListWrapper>
   )
 }
 
-export default PostList
+export default PostPhotoList

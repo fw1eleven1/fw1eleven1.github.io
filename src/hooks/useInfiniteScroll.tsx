@@ -1,3 +1,4 @@
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
 
 type PostItemProps = {
@@ -8,8 +9,13 @@ type PostItemProps = {
     frontmatter: {
       title: string
       date: string
-      summary: string
+      summary?: string
       tags: string[]
+      thumbnail?: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData
+        }
+      }
     }
   }
 }

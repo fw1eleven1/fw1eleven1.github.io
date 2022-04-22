@@ -23,6 +23,7 @@ const TagListWrapper = styled.div`
   flex-wrap: nowrap;
   width: 600px;
   overflow-x: auto;
+  white-space: nowrap;
 
   -ms-overflow-style: none;
   scrollbar-width: none;

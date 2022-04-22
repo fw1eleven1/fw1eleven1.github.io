@@ -97,10 +97,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     'src/templates/postList_template.tsx',
   )
 
+  const PostPhotoListTemplateComponent = path.resolve(
+    __dirname,
+    'src/templates/postPhotoList_template.tsx'
+  )
+
   const generatePostListPage = ({ relativePath }) => {
     const pageOptions = {
       path: `/${relativePath}`,
-      component: PostListTemplateComponent,
+      component: relativePath === '사진' ? PostPhotoListTemplateComponent : PostListTemplateComponent,
       context: {
         categoryRegex: `/(\/contents\/${relativePath})/`,
       },
