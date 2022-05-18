@@ -104,6 +104,8 @@ const Main: FunctionComponent<MainProps> = function ({
             : siteMetadata.title}
         </title>
         <meta name="description" content={siteMetadata.description} />
+        <meta property="og:title" content={siteMetadata.title} />
+        <meta property="og:description" content={siteMetadata.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta
