@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-templates-post-list-template-tsx",
     "path": "/잡담",
-    "result": {"data":{"site":{"siteMetadata":{"title":"js의 잡다한 블로그","description":"아무 글이나 싸지르고 보는 js의 잡다한 블로그","siteUrl":"https://blog.jsworld.me"}},"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"블로그, 시작합니다","summary":"블로그의 첫 글","date":"2022-04-06","tags":["잡담"]},"fields":{"slug":"/잡담/블로그, 시작합니다/"}}}]},"file":{"childMarkdownRemark":{"frontmatter":{"description":["IT: IT관련 글","잡담: 그냥 아무 글이나 적는 곳","사진: 풍경 위주의 사진들"]}}}},"pageContext":{"categoryRegex":"/(/contents/잡담)/"}},
+    "result": {"data":{"site":{"siteMetadata":{"title":"js의 잡다한 블로그","description":"아무 글이나 싸지르고 보는 js의 잡다한 블로그","siteUrl":"https://blog.jsworld.me"}},"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"블로그, 시작합니다","summary":"블로그의 첫 글","date":"2022-04-06","tags":["잡담"]},"fields":{"slug":"/잡담/블로그, 시작합니다/"}}}]},"file":{"childMarkdownRemark":{"frontmatter":{"description":["IT: IT관련 글","잡담: 그냥 아무 글이나 적는 곳","사진: 풍경 위주의 사진들","일상: 별다를 것 없는 하루"]}}}},"pageContext":{"categoryRegex":"/(/contents/잡담)/"}},
     "staticQueryHashes": ["3495371188"]}
