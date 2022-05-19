@@ -46,10 +46,12 @@ const MainWrapper = styled.div`
   }
 `
 
-const Main: FunctionComponent<MainProps> = function (
-  { siteMetadata, title, children },
+const Main: FunctionComponent<MainProps> = function ({
+  siteMetadata,
   image,
-) {
+  title,
+  children,
+}) {
   const [pathname, setPathname] = useState<string>('')
   useEffect(() => {
     let path: string = window.location.pathname
