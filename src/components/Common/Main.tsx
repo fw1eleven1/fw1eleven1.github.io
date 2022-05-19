@@ -6,7 +6,6 @@ import Header from './Header'
 import { graphql, useStaticQuery } from 'gatsby'
 import Sidebar from './Sidebar'
 import { Helmet } from 'react-helmet'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 type MainProps = {
   siteMetadata: {
@@ -14,7 +13,7 @@ type MainProps = {
     description: string
     siteUrl: string
   }
-  image: IGatsbyImageData
+  image: string
   title?: string
   children: ReactNode
 }

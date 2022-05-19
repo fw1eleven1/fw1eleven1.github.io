@@ -6,7 +6,6 @@ import Main from 'components/Common/Main'
 import PostList from 'components/Post/PostList'
 import TagList from 'components/Tag/TagList'
 import styled from '@emotion/styled'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 type IndexPageProps = {
   location: {
@@ -33,9 +32,7 @@ type IndexPageProps = {
       }
     }
     file: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
+      publicURL: string
     }
   }
 }
@@ -81,9 +78,7 @@ type QueryDataProps = {
     group: CategoryEdgesProps[]
   }
   file: {
-    childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    publicURL: string
   }
 }
 
@@ -143,9 +138,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
         }
       }
       file(name: { eq: "ogimage" }) {
-        childImageSharp {
-          gatsbyImageData
-        }
+        publicURL
       }
     }
   `)
@@ -195,10 +188,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <Main
-      siteMetadata={data.site.siteMetadata}
-      image={data.file.childImageSharp.gatsbyImageData}
-    >
+    <Main siteMetadata={data.site.siteMetadata} image={data.file.publicURL}>
       <ChildWrapper>
         {/* <Description description="전체 글 보기" /> */}
         <TagList selectedTag={selectedTag} tags={tagList} />
