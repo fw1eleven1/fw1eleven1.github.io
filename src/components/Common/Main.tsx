@@ -6,6 +6,7 @@ import Header from './Header'
 import { graphql, useStaticQuery } from 'gatsby'
 import Sidebar from './Sidebar'
 import { Helmet } from 'react-helmet'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 type MainProps = {
   siteMetadata: {
@@ -13,6 +14,7 @@ type MainProps = {
     description: string
     siteUrl: string
   }
+  image: IGatsbyImageData
   title?: string
   children: ReactNode
 }
@@ -45,11 +47,10 @@ const MainWrapper = styled.div`
   }
 `
 
-const Main: FunctionComponent<MainProps> = function ({
-  siteMetadata,
-  title,
-  children,
-}) {
+const Main: FunctionComponent<MainProps> = function (
+  { siteMetadata, title, children },
+  image,
+) {
   const [pathname, setPathname] = useState<string>('')
   useEffect(() => {
     let path: string = window.location.pathname
@@ -106,6 +107,7 @@ const Main: FunctionComponent<MainProps> = function ({
         <meta name="description" content={siteMetadata.description} />
         <meta property="og:title" content={siteMetadata.title} />
         <meta property="og:description" content={siteMetadata.description} />
+        <meta property="og:image" content={image} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta
